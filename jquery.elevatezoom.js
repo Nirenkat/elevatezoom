@@ -99,8 +99,8 @@ if ( typeof Object.create !== 'function' ) {
 				var newImg = new Image();
 				newImg.onload = function() {
 					//set the large image dimensions - used to calculte ratio's
-					self.largeWidth = newImg.width*self.options.scale;
-					self.largeHeight = newImg.height*self.options.scale;
+					self.largeWidth = newImg.width;
+					self.largeHeight = newImg.height;
 					//once image is loaded start the calls
 					self.startZoom();
 					self.currentImage = self.imageSrc;
@@ -178,7 +178,6 @@ if ( typeof Object.create !== 'function' ) {
 						+ "cursor:"+(self.options.cursor)+";"
 						+ "px solid " + self.options.borderColour 
 						+ ";background-repeat: no-repeat;"
-						+ "background-size: "+ self.largeWidth/self.currentZoomLevel+ "px " +self.largeHeight/self.currentZoomLevel + "px;"
 						+ "position: absolute;";
 				}    
 
@@ -1183,8 +1182,8 @@ if ( typeof Object.create !== 'function' ) {
 				self.options.onImageSwap(self.$elem);
 
 				newImg.onload = function() {
-					self.largeWidth = newImg.width*self.options.scale;
-					self.largeHeight = newImg.height*self.options.scale;
+					self.largeWidth = newImg.width;
+					self.largeHeight = newImg.height;
 					self.zoomImage = largeimage;
 					self.zoomWindow.css({ "background-size": self.largeWidth + 'px ' + self.largeHeight + 'px' });
 					self.swapAction(smallimage, largeimage);
@@ -1781,7 +1780,6 @@ if ( typeof Object.create !== 'function' ) {
 			loadingIcon: false, //http://www.example.com/spinner.gif
 			cursor:"default", // user should set to what they want the cursor as, if they have set a click function
 			responsive:true,
-			scale: 1, // scale for inner images
 			onComplete: $.noop,
       onDestroy: function() {},
 			onZoomedImageLoaded: function() {},
